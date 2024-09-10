@@ -1,0 +1,762 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>openCV 学习 | 阿北笔记</title><meta name="keywords" content="Python,图像处理"><meta name="author" content="Abei"><meta name="copyright" content="Abei"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="openCV 学习"><meta name="application-name" content="openCV 学习"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="openCV 学习"><meta property="og:url" content="http://abeibiji.cn/2024/05/12/openCV学习/index.html"><meta property="og:site_name" content="阿北笔记"><meta property="og:description" content="介绍：用于记录自己学习 openCV 的理论笔记    openCV笔记图像读取1234567891011121314import cv2import numpy as npdef cv_show(name,img):    cv2.imshow(name, img)    cv2.waitKey("><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291424669.png"><meta property="article:author" content="Abei"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291424669.png"><meta name="description" content="介绍：用于记录自己学习 openCV 的理论笔记    openCV笔记图像读取1234567891011121314import cv2import numpy as npdef cv_show(name,img):    cv2.imshow(name, img)    cv2.waitKey("><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://abeibiji.cn/2024/05/12/openCV%E5%AD%A6%E4%B9%A0/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f9522a0fcf4f7f8c58d9fdbacbef17a2";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Abeibiji","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":1,"basicWordCount":1000,"key":"918a94835c057289f7f4","Referer":"http://www.abeibiji.com/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Abei","link":"链接: ","source":"来源: 阿北笔记","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '阿北笔记',
+  title: 'openCV 学习',
+  postAI: '',
+  pageFillDescription: 'openCV笔记, 图像读取, 视频读取, 截取部分图像数据, 颜色通道提取, 边界填充, 图像融合, 图像阈值, 图像平滑处理, 形态学-腐蚀操作和膨胀操作, 开运算与闭运算, 梯度运算, 礼帽与黑帽, 图像梯度 - Sobel算子, 图像梯度 - Scharr算子, 图像梯度 - laplacian算子, Canny 边缘检测算法, 图像金字塔, 高斯金字塔, 拉普拉斯金字塔, 图像轮廓, 轮廓近似, 边界矩形, 外接圆, 模板匹配, 直方图, mask 操作, 直方图均衡化, 自适应直方图均衡化, 傅里叶变换, 低通滤波, 高通滤波介绍用于记录自己学习的理论笔记笔记图像读取读取灰度图像图像存储类型像素个数数据类型视频读取检查是否正确打开读取视频的第一帧是布尔值判断是否正常打开为读取第一帧的数据转为灰度帧是码的退出键值指定处理完一帧后的等待时间截取部分图像数据截取部分图像数据从左上角开始计算颜色通道提取将图像拆分为三通道将拆出来的重写为一个图像只保留其他两个通道同理边界填充如果实际的图像与需求大小不符可以将图像边缘进行填充设置上下左右的填充值图像融合假设图像尺寸为假设图像尺寸为就需要先将图像调整为相同尺寸图像阈值输入图像阈值实际的值不是百分比最大可能值一般为怎么判断阈值判断之后怎么处理超过阈值部分取最大值否则取相当于把亮的地方取变为白点暗的地方取变为黑点突出主体的反转大于阈值部分设为阈值否则不变大于阈值部分不改变否则设为的反转图像平滑处理均值滤波简单的平均卷积操作方框滤波高斯滤波中值滤波形态学腐蚀操作和膨胀操作去除以下图片的毛刺腐蚀操作处理之后变细了膨胀操作开运算与闭运算开运算先腐蚀再膨胀闭运算先膨胀再腐蚀开运算闭运算梯度运算梯度膨胀腐蚀将两个图片拼在一起显示横向为纵向礼帽与黑帽礼帽原始输入开运算结果黑帽闭运算原始输入礼帽黑帽图像梯度算子表示水平方向表示垂直方向图像的深度通常为和分别表示水平和竖直方向是算子的大小白到黑是正数黑到白就是负数所有负数会被截断成所以要取绝对值分别计算出再求和图像梯度算子图像梯度算子边缘检测算法使用高斯滤波器以平滑图像滤除噪声计算图像中每个像素点的梯度强度和方向应用非极大值抑制以消除边缘检测带来的杂散响应应用双阈值检测来确定真实的和潜在的边缘通过抑制孤立的弱边缘最终完成边缘检测高斯滤波器梯度和方向非极大值抑制双阈值检测后面两个数值为和图像金字塔高斯金字塔向下采样方法缩小向上采样方法放大上采样下采样拉普拉斯金字塔图像轮廓轮廓检索模式只检索最外面的轮廓检索所有的轮廓并将其保存到一条链表当中检索所有的轮廓并将他们组织为两层顶层是各部分的外部边界第二层是空洞的边界检索所有的轮廓并重构嵌套轮廓的整个层次用这个就足够轮廓逼近方法以链码的方式输出轮廓所有其他方法输出多边形顶点的序列压缩水平的垂直的和斜的部分也就是函数只保留他们的终点部分必须为格式二值化传入绘制图像轮廓轮廓索引颜色模式线条厚度注意需要要不原图会变表示绘出所有轮廓轮廓近似设置阈值找出与曲线上最远的点判断到的距离是否小于阈值若小于则将直线代替曲线若大于则继续以相同的方法判断直线能否代替曲线以此类推取出第一个轮廓展示轮廓效果设置阈值展示近似后的效果边界矩形画出轮廓的外接矩形取出第一个轮廓展示处理后的图像边界包裹的面积外接矩形面积轮廓面积与边界矩形比外接圆承接了上一小节的展示处理后的图像一个三角形画出了外接矩形和外接圆模板匹配模板匹配和卷积原理很像模板在原图像上从原点开始滑动计算模板与图像被模板覆盖的地方的差别程度这个差别程度的计算方法在里有种然后将每次计算的结果放入一个矩阵作为结果输出假如原图形是大小而模板是大小则输出结果的矩阵是计算平方不同计算出来的值越小越相关计算相关性计算出来的值越大越相关计算相关系数计算出来的值越大越相关计算归一化平方不同计算出来的值越接近越相关计算归一化相关性计算出来的值越接近越相关计算归一化相关系数计算出来的值越接近越相关匹配多个对象取匹配程度大于百分之的坐标画出直方图原图像图像格式为或当传入函数时用中括号括例如同样用中括号括来他会告函数我们统幅图像的直方图如果入图像是灰度图它的值就是如果是彩色图像的传入参数可以是他们分别对应着掩模图像统整幅图像的直方图就把它为但是如果想统图像某一部分的直方图就制作一个掩模图像并使用它的数目也应用中括号括来像素值范围常为表示灰度图操作创建绘制结果直方图均衡化传入一个图像即可结果自适应直方图均衡化将图像分块只在各自块内进行直方图均衡化处理傅里叶变换点击去知乎看详解傅里叶分析之掐死教程完整版傅里叶变换的作用高频变化剧烈的灰度分量例如边界低频变化缓慢的灰度分量例如一片大海滤波低通滤波器只保留低频会使得图像模糊高通滤波器只保留高频会使得图像细节增强中主要就是和输入图像需要先转换成格式得到的结果中频率为的部分会在左上角通常要转换到中心位置可以通过变换来实现返回的结果是双通道的实部虚数通常还需要转换成图像格式才能展示得到灰度图能表示的形式低通滤波低通滤波高通滤波低通滤波',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-05-29 14:24:35',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="阿北笔记" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/avatar.jpeg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=okp4sxwdxgy0r6hgoueO-1zWTPl044RT" title="博主"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博主"/><span class="back-menu-item-text">博主</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" href="/null" title="项目暂未上线"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="项目暂未上线"/><span class="back-menu-item-text">项目暂未上线</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">阿北笔记</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 文章列表</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 文章分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 专栏</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/tags/%E6%9D%82%E8%B0%88"><i class="anzhiyufont anzhiyu-icon-heartbeat faa-tada" style="font-size: 0.9em;"></i><span> 杂谈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/%E5%87%BA%E6%B8%B8%E8%AE%B0%E5%BD%95"><i class="anzhiyufont anzhiyu-icon-thumbs-up faa-tada" style="font-size: 0.9em;"></i><span> 旅行</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill faa-tada" style="font-size: 0.9em;"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/Awebsite/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 优质站点</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-circle-dot faa-tada" style="font-size: 0.9em;"></i><span> 关于本站</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/pay/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="/pay/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/pay/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/pay/zhifubao.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>5</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>3</sup></a><a href="/tags/%E4%B8%89%E6%98%9F/" style="font-size: 1.05rem;">三星<sup>1</sup></a><a href="/tags/%E4%B8%8A%E7%BA%BF/" style="font-size: 1.05rem;">上线<sup>2</sup></a><a href="/tags/%E4%BA%91%E6%97%85%E8%A1%8C/" style="font-size: 1.05rem;">云旅行<sup>4</sup></a><a href="/tags/%E5%87%BA%E6%B8%B8%E8%AE%B0%E5%BD%95/" style="font-size: 1.05rem;">出游记录<sup>1</sup></a><a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 1.05rem;">图像处理<sup>1</sup></a><a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">工具<sup>1</sup></a><a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.05rem;">杂谈<sup>5</sup></a><a href="/tags/%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1/" style="font-size: 1.05rem;">每日打卡<sup>1</sup></a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">深度学习<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.05rem;">算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/" style="font-size: 1.05rem;">算法研究<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95/" style="font-size: 1.05rem;">算法记录<sup>1</sup></a><a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.05rem;">踩坑<sup>2</sup></a><a href="/tags/%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">阅读分享<sup>1</sup></a><a href="/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/" style="font-size: 1.05rem;">项目实践<sup>3</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">21</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url">学习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Python/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Python</span></a><a class="article-meta__tags" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>图像处理</span></a></span></div></div><h1 class="post-title" itemprop="name headline">openCV 学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-12T04:38:17.000Z" title="发表于 2024-05-12 12:38:17">2024-05-12</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-05-29T06:24:35.763Z" title="更新于 2024-05-29 14:24:35">2024-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.6k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="openCV 学习"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为重庆"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>重庆</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291424669.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://abeibiji.cn/2024/05/12/openCV%E5%AD%A6%E4%B9%A0/"><header><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url">学习</a><a href="/tags/Python/" tabindex="-1" itemprop="url">Python</a><a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" tabindex="-1" itemprop="url">图像处理</a><h1 id="CrawlerTitle" itemprop="name headline">openCV 学习</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Abei</span><time itemprop="dateCreated datePublished" datetime="2024-05-12T04:38:17.000Z" title="发表于 2024-05-12 12:38:17">2024-05-12</time><time itemprop="dateCreated datePublished" datetime="2024-05-29T06:24:35.763Z" title="更新于 2024-05-29 14:24:35">2024-05-29</time></header><div class="tip info"><p>介绍：用于记录自己学习 openCV 的理论笔记 </p>
+</div>
+
+<h1 id="openCV笔记"><a href="#openCV笔记" class="headerlink" title="openCV笔记"></a>openCV笔记</h1><h2 id="图像读取"><a href="#图像读取" class="headerlink" title="图像读取"></a>图像读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cv_show</span>(<span class="params">name,img</span>):</span><br><span class="line">    cv2.imshow(name, img)</span><br><span class="line">    cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">cv_show(<span class="string">&#x27;cat&#x27;</span>, img)</span><br><span class="line"><span class="comment"># img = cv2.imread(&#x27;cat.png&#x27;,cv2.IMREAD_GRAYSCALE)</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>,<span class="number">0</span>) <span class="comment">#读取灰度图像</span></span><br><span class="line">cv_show(<span class="string">&#x27;cat&#x27;</span>, img)</span><br><span class="line">imgType = <span class="built_in">type</span>(img)     <span class="comment"># 图像存储类型</span></span><br><span class="line">xiangSuNum = img.size  <span class="comment"># 像素个数</span></span><br><span class="line">insideType = img.dtype  <span class="comment"># 数据类型</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="视频读取"><a href="#视频读取" class="headerlink" title="视频读取"></a>视频读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">Video = cv2.VideoCapture(<span class="string">&#x27;test.mp4&#x27;</span>)</span><br><span class="line"><span class="comment"># 检查是否正确打开</span></span><br><span class="line"><span class="keyword">if</span> Video.isOpened():</span><br><span class="line">    isOpen, frame = Video.read() <span class="comment"># 读取视频的第一帧，isOpen是布尔值，判断是否正常打开。frame为读取第一帧的数据</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    isOpen = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> isOpen:</span><br><span class="line">    ret, frame = Video.read()</span><br><span class="line">    <span class="keyword">if</span> frame <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> ret:</span><br><span class="line">        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) <span class="comment"># 转为灰度帧</span></span><br><span class="line">        cv2.imshow(<span class="string">&#x27;result&#x27;</span>, gray)</span><br><span class="line">        <span class="keyword">if</span> cv2.waitKey(<span class="number">10</span>) &amp; <span class="number">0xFF</span> == <span class="number">27</span>:<span class="comment"># 27是ACSII码的退出键 waitKey(10)值指定处理完一帧后的等待时间</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">Video.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="截取部分图像数据"><a href="#截取部分图像数据" class="headerlink" title="截取部分图像数据"></a>截取部分图像数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -------------------------截取部分图像数据----------------------------------</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">cat = img[<span class="number">0</span>:<span class="number">500</span>,<span class="number">0</span>:<span class="number">500</span>] <span class="comment"># 从左上角开始计算</span></span><br><span class="line">cv_show(<span class="string">&#x27;cat&#x27;</span>,cat)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131546717.png" alt="image-20240513154649550"></p>
+<h2 id="颜色通道提取"><a href="#颜色通道提取" class="headerlink" title="颜色通道提取"></a>颜色通道提取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">b, g, r = cv2.split(img) <span class="comment"># # 将图像拆分为bgr三通道</span></span><br><span class="line">img = cv2.merge((b, g, r)) <span class="comment"># 将拆出来的 bgr重写为一个图像</span></span><br><span class="line"><span class="comment"># 只保留R</span></span><br><span class="line">cur_img = img.copy()</span><br><span class="line">cur_img[:, :, <span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">cur_img[:, :, <span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">cv_show(<span class="string">&#x27;img&#x27;</span>, cur_img)</span><br><span class="line"><span class="comment"># 其他两个通道同理</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="边界填充"><a href="#边界填充" class="headerlink" title="边界填充"></a>边界填充</h2><blockquote>
+<p> 如果实际的图像与需求大小不符，可以将图像边缘进行填充</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">top_size, bottom_size, left_size, right_size = (<span class="number">50</span>,<span class="number">50</span>,<span class="number">50</span>,<span class="number">50</span>) <span class="comment"># 设置上下左右的填充值</span></span><br><span class="line">replicate = cv2.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv2.BORDER_REPLICATE)</span><br><span class="line">reflect = cv2.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv2.BORDER_REFLECT)</span><br><span class="line">reflect101 = cv2.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv2.BORDER_REFLECT_101)</span><br><span class="line">wrap = cv2.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv2.BORDER_WRAP)</span><br><span class="line">constant = cv2.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv2.BORDER_CONSTANT,value=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.subplot(<span class="number">231</span>),plt.imshow(img,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Original&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">232</span>),plt.imshow(replicate,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Replicate&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">233</span>),plt.imshow(reflect,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Reflect&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">234</span>),plt.imshow(reflect101,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Reflect101&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">235</span>),plt.imshow(wrap,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Wrap&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">236</span>),plt.imshow(constant,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;Constant&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131616087.png" alt="Snipaste_2024-05-13_16-15-29"></p>
+<h2 id="图像融合"><a href="#图像融合" class="headerlink" title="图像融合"></a>图像融合</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img_cat = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">img_dog = cv2.imread(<span class="string">&#x27;dog.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 假设cat图像尺寸为(414,500,3)</span></span><br><span class="line"><span class="comment"># 假设dog图像尺寸为(500,500,3) 就需要先将图像调整为相同尺寸</span></span><br><span class="line">img_dog = cv2.resize(img_dog,(<span class="number">414</span>,<span class="number">500</span>))</span><br><span class="line">res = cv2.addWeighted(img_cat,<span class="number">0.4</span>,img_dog,<span class="number">0.6</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图像阈值"><a href="#图像阈值" class="headerlink" title="图像阈值"></a>图像阈值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ret,dst = cv2.threshold(src,thresh,maxval,type)</span></span><br><span class="line"><span class="comment"># src:输入图像 thresh：阈值(实际的值，不是百分比) maxval：最大可能值（一般为255） type:(怎么判断阈值，判断之后怎么处理)</span></span><br><span class="line"><span class="comment"># cv2.THRESH_BINARY 超过阈值部分取maxval(最大值)，否则取0  相当于把亮的地方取255变为白点，暗的地方取0变为黑点，突出主体</span></span><br><span class="line"><span class="comment"># cv2.THRESH_BINARY_INV THRESH_BINARY的反转</span></span><br><span class="line"><span class="comment"># cv2.THRESH_TRUNC 大于阈值部分设为阈值，否则不变</span></span><br><span class="line"><span class="comment"># cv2.THRESH_TOZERO 大于阈值部分不改变，否则设为0</span></span><br><span class="line"><span class="comment"># cv2.THRESH_TOZERO_INV THRESH_TOZERO的反转</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img_cat = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line">img_gary = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">ret, thresh1 = cv2.threshold(img_gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">ret, thresh2 = cv2.threshold(img_gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY_INV)</span><br><span class="line">ret, thresh3 = cv2.threshold(img_gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TRUNC)</span><br><span class="line">ret, thresh4 = cv2.threshold(img_gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TOZERO)</span><br><span class="line">ret, thresh5 = cv2.threshold(img_gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TOZERO_INV)</span><br><span class="line">titles = [<span class="string">&#x27;Original&#x27;</span>, <span class="string">&#x27;BINARY&#x27;</span>, <span class="string">&#x27;BINARY_INV&#x27;</span>, <span class="string">&#x27;TRUNC&#x27;</span>, <span class="string">&#x27;TOZERO&#x27;</span>, <span class="string">&#x27;TOZERO_INV&#x27;</span>]</span><br><span class="line">images = [img_cat, thresh1, thresh2, thresh3, thresh4, thresh5]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">    plt.subplot(<span class="number">2</span>,<span class="number">3</span>,i+<span class="number">1</span>),plt.imshow(images[i],<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">    plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131648645.png" alt="Snipaste_2024-05-13_16-48-44"></p>
+<h2 id="图像平滑处理"><a href="#图像平滑处理" class="headerlink" title="图像平滑处理"></a>图像平滑处理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 均值滤波</span></span><br><span class="line"><span class="comment"># 简单的平均卷积操作</span></span><br><span class="line">blur = cv2.blur(img,(<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">cv_show(<span class="string">&#x27;blur&#x27;</span>,blur)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方框滤波</span></span><br><span class="line">box = cv2.boxFilter(img,-<span class="number">1</span>,(<span class="number">3</span>,<span class="number">3</span>),normalize=<span class="literal">True</span>)</span><br><span class="line">cv_show(<span class="string">&#x27;box&#x27;</span>,box)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 高斯滤波</span></span><br><span class="line">aussian = cv2.GaussianBlur(img,(<span class="number">5</span>,<span class="number">5</span>),<span class="number">1</span>)</span><br><span class="line">cv_show(<span class="string">&#x27;aussian&#x27;</span>,aussian)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中值滤波</span></span><br><span class="line">median = cv2.medianBlur(img,<span class="number">5</span>)</span><br><span class="line">cv_show(<span class="string">&#x27;median&#x27;</span>,median)</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131709708.png" alt="image-20240513170956530"></p>
+<h2 id="形态学-腐蚀操作和膨胀操作"><a href="#形态学-腐蚀操作和膨胀操作" class="headerlink" title="形态学-腐蚀操作和膨胀操作"></a>形态学-腐蚀操作和膨胀操作</h2><blockquote>
+<p>去除以下图片的毛刺</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131710660.png" alt="image-20240513171053619"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -------------------------腐蚀操作----------------------------------</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dige.png&#x27;</span>)</span><br><span class="line">kernel = np.ones((<span class="number">5</span>,<span class="number">5</span>),np.uint8)</span><br><span class="line">erosion = cv2.erode(img,kernel,iterations=<span class="number">1</span>)</span><br><span class="line">pie = cv2.imread(<span class="string">&#x27;pie.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 处理之后变细了</span></span><br><span class="line"><span class="comment"># -------------------------膨胀操作----------------------------------</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">dige_dilate = cv2.dilate(erosion,kernel,iterations=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405131713024.png" alt="image-20240513171357983"></p>
+<h2 id="开运算与闭运算"><a href="#开运算与闭运算" class="headerlink" title="开运算与闭运算"></a>开运算与闭运算</h2><blockquote>
+<p>开运算： 先腐蚀再膨胀</p>
+<p>闭运算：先膨胀再腐蚀</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开运算</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dige.png&#x27;</span>)</span><br><span class="line">kernel = np.ones((<span class="number">5</span>,<span class="number">5</span>),np.uint8)</span><br><span class="line">opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kermel)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 闭运算</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dige.png&#x27;</span>)</span><br><span class="line">kernel = np.ones((<span class="number">5</span>,<span class="number">5</span>),np.uint8)</span><br><span class="line">opening = cv2.morphologyEx(img,cv2.MORPH_CLOSE,kermel)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="梯度运算"><a href="#梯度运算" class="headerlink" title="梯度运算"></a>梯度运算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 梯度 = 膨胀 - 腐蚀</span></span><br><span class="line">pie = cv2.imread(<span class="string">&#x27;pre.png&#x27;</span>)</span><br><span class="line">kernel = np.ones((<span class="number">7</span>,<span class="number">7</span>),np.uint8)</span><br><span class="line">dilate = cv2.dilate(pie,kernel,iterations = <span class="number">5</span>)</span><br><span class="line">erosion = cv2.erode(pie,kernel,iterations = <span class="number">5</span>)</span><br><span class="line">res = np.hstack(dilate,erosion) <span class="comment"># 将两个图片拼在一起显示，横向 vstack为纵向</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gradient = cv2.morphologyEx(pie,cv2.MORPH_GRADIENT,kernel)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="礼帽与黑帽"><a href="#礼帽与黑帽" class="headerlink" title="礼帽与黑帽"></a>礼帽与黑帽</h2><ul>
+<li>礼帽 &#x3D; 原始输入 - 开运算结果</li>
+<li>黑帽 &#x3D; 闭运算 - 原始输入</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 礼帽</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dige.png&#x27;</span>)</span><br><span class="line">tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;tophat&#x27;</span>,tophat)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 黑帽</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dige.png&#x27;</span>)</span><br><span class="line">blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;blackhat&#x27;</span>,blackhat)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图像梯度-Sobel算子"><a href="#图像梯度-Sobel算子" class="headerlink" title="图像梯度 - Sobel算子"></a>图像梯度 - Sobel算子</h2><blockquote>
+<p>Gx 表示水平方向，Gy 表示垂直方向</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140856052.png" alt="image-20240514085623958"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;pie.png&#x27;</span>,cv2.IMREAD_GRAYSCALE)</span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: 图像的深度（通常为 -1）</span></span><br><span class="line"><span class="comment"># dx 和 dy 分别表示水平和竖直方向</span></span><br><span class="line"><span class="comment"># ksize 是 Sobel 算子的大小</span></span><br><span class="line">sobelx = cv2.Sobel(img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 白到黑是正数，黑到白就是负数，所有负数会被截断成0，所以要取绝对值</span></span><br><span class="line">sobelx = cv2.convertScaleAbs(sobelx)</span><br><span class="line"><span class="comment"># 分别计算出 Gx Gy再求和</span></span><br><span class="line">sobely = cv2.Sobel(img, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobely = cv2.convertScaleAbs(sobely)</span><br><span class="line">sobelxy = cv2.addWeighted(sobelx, <span class="number">0.5</span>, sobely, <span class="number">0.5</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="图像梯度-Scharr算子"><a href="#图像梯度-Scharr算子" class="headerlink" title="图像梯度 - Scharr算子"></a>图像梯度 - Scharr算子</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140918478.png" alt="image-20240514091833419"></p>
+<h3 id="图像梯度-laplacian算子"><a href="#图像梯度-laplacian算子" class="headerlink" title="图像梯度 - laplacian算子"></a>图像梯度 - laplacian算子</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140919969.png" alt="image-20240514091938911"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, cv2.IMREAD_GRAYSCALE)</span><br><span class="line">sobelx = cv2.Sobel(img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize = <span class="number">3</span>)</span><br><span class="line">sobely = cv2.Sobel(img, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize = <span class="number">3</span>)</span><br><span class="line">sobelx = cv2.convertScaleAbs(sobelx)</span><br><span class="line">sobely = cv2.convertScaleAbs(sobely)</span><br><span class="line">sobelxy = cv2.addWeighted(sobelx, <span class="number">0.5</span>, sobely, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">scharrx = cv2.Scharr(img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharry = cv2.Scharr(img, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharrx = cv2.convertScaleAbs(scharrx)</span><br><span class="line">scharry = cv2.convertScaleAbs(scharry)</span><br><span class="line">scharrxy = cv2.addWeighted(scharrx, <span class="number">0.5</span>, scharry, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian = cv2.Laplacian(img, cv2.CV_64F)</span><br><span class="line">laplacian = cv2.convertScaleAbs(laplacian)</span><br><span class="line"></span><br><span class="line">res = np.hstack((sobelxy, scharrxy, laplacian))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Canny-边缘检测算法"><a href="#Canny-边缘检测算法" class="headerlink" title="Canny 边缘检测算法"></a>Canny 边缘检测算法</h2><ul>
+<li>使用高斯滤波器，以平滑图像， 滤除噪声。</li>
+<li>计算图像中每个像素点的梯度强度和方向。</li>
+<li>应用非极大值（Non-Maximum Suppression）抑制，以消除边缘检测带来的杂散响应。</li>
+<li>应用双阈值（Double-Threshold）检测来确定真实的和潜在的边缘。</li>
+<li>通过抑制孤立的弱边缘最终完成边缘检测。</li>
+</ul>
+<p>高斯滤波器</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140936193.png" alt="image-20240514093645117"></p>
+<p>梯度和方向</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140937619.png" alt="image-20240514093748547"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140937674.png" alt="image-20240514093759607"></p>
+<p>非极大值抑制</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140938627.png" alt="image-20240514093830561"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140940186.png" alt="image-20240514094041096"></p>
+<p>双阈值检测</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140941673.png" alt="image-20240514094126597"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, cv2.IMREAD_GRAYSCALE)</span><br><span class="line">v1 = cv2.Canny(img, <span class="number">80</span>, <span class="number">150</span>) <span class="comment"># 后面两个数值为minVal 和 maxVal</span></span><br><span class="line">v2 = cv2.Canny(img, <span class="number">50</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图像金字塔"><a href="#图像金字塔" class="headerlink" title="图像金字塔"></a>图像金字塔</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140947567.png" alt="image-20240514094745459"></p>
+<h3 id="高斯金字塔"><a href="#高斯金字塔" class="headerlink" title="高斯金字塔"></a>高斯金字塔</h3><p>向下采样方法（缩小）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140948293.png" alt="image-20240514094842231"></p>
+<p>向上采样方法（放大）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140950310.png" alt="image-20240514095057239"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&quot;AM.png&quot;</span>)</span><br><span class="line"><span class="comment"># 上采样</span></span><br><span class="line">up = cv2.pyrUp(img)</span><br><span class="line"><span class="comment"># 下采样</span></span><br><span class="line">down = cv2.pyrDown(img)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="拉普拉斯金字塔"><a href="#拉普拉斯金字塔" class="headerlink" title="拉普拉斯金字塔"></a>拉普拉斯金字塔</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405140955216.png" alt="image-20240514095529131"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">down = cv2.pyrDown(img)</span><br><span class="line">down_up = cv2.pyrUp(down)</span><br><span class="line">l_l = img - down_up</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图像轮廓"><a href="#图像轮廓" class="headerlink" title="图像轮廓"></a>图像轮廓</h2><blockquote>
+<p>cv2.findContours(img,mode,method)</p>
+</blockquote>
+<p>mode：轮廓检索模式</p>
+<ul>
+<li>RETR_EXTERNAL：只检索最外面的轮廓</li>
+<li>RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中</li>
+<li>RETR_CCOMP：检索所有的轮廓，并将他们组织为两层，顶层是各部分的外部边界，第二层是空洞的边界</li>
+<li>RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次（&#x3D;&#x3D;用这个就足够&#x3D;&#x3D;）</li>
+</ul>
+<p>method：轮廓逼近方法</p>
+<ul>
+<li>CHAIN_APPROX_NONE：以Freeman链码的方式输出轮廓，所有其他方法输出多边形（顶点的序列）。</li>
+<li>CHAIN_APPROX_SIMPLE：压缩水平的、垂直的和斜的部分，也就是，函数只保留他们的终点部分。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&quot;contours.png&quot;</span>) <span class="comment"># 必须为 png 格式</span></span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GARY)</span><br><span class="line">ret, thresh = cv2.threshold(gray, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY) <span class="comment"># 二值化</span></span><br><span class="line">binary, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX, cv2.CHAIN_APPROX_NONE)</span><br><span class="line"><span class="comment"># 传入绘制图像，轮廓，轮廓索引，颜色模式，线条厚度</span></span><br><span class="line"><span class="comment"># 注意需要copy，要不原图会变</span></span><br><span class="line">draw_img = img.copy()</span><br><span class="line">res = cv2.drawContours(draw_img, contours, -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)<span class="comment"># -1表示绘出所有轮廓</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="轮廓近似"><a href="#轮廓近似" class="headerlink" title="轮廓近似"></a>轮廓近似</h3><p>设置阈值 T，找出与 AB 曲线上最远的点 D，判断 D 到 AB 的距离是否小于阈值，若小于则将 AB 直线代替 AB 曲线，若大于，则继续以相同的方法判断 AD 直线能否代替 AD 曲线，以此类推。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405200906069.png" alt="image-20240520090634996"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;contour2.png&#x27;</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GARY)</span><br><span class="line">ret, thresh = cv2.threshold(gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">binary, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">cnt = contours[<span class="number">0</span>] <span class="comment"># 取出第一个轮廓</span></span><br><span class="line"><span class="comment"># 展示轮廓效果</span></span><br><span class="line">draw_img = img.copy()</span><br><span class="line">res = cv2.drawContours(draw_img, [cut], -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line">cv.show(res, <span class="string">&#x27;res&#x27;</span>)</span><br><span class="line"></span><br><span class="line">thresholdT = <span class="number">0.1</span> <span class="comment"># 设置阈值</span></span><br><span class="line">epsilon = thresholdT*cv2.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">approx = cv2.approxPloyDP(cnt, epsilon, <span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 展示近似后的效果</span></span><br><span class="line">draw_img = img.copy()</span><br><span class="line">res = cv2.drawContours(draw_img, [approx], -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line">cv.show(res, <span class="string">&#x27;res&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="边界矩形"><a href="#边界矩形" class="headerlink" title="边界矩形"></a>边界矩形</h3><p>画出轮廓的外接矩形</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;contour2.png&#x27;</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GARY)</span><br><span class="line">ret, thresh = cv2.threshold(gary, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">binary, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">cnt = contours[<span class="number">0</span>] <span class="comment"># 取出第一个轮廓</span></span><br><span class="line"></span><br><span class="line">x, y, w, h = cv2.boundingRect(cnt)</span><br><span class="line">img = cv2.rectangle(img, (x, y), (x + w, y + h),(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line">cv2.show(img,<span class="string">&#x27;img&#x27;</span>) <span class="comment"># 展示处理后的图像</span></span><br><span class="line">area = cv2.contourArea(cnt) <span class="comment"># 边界包裹的面积</span></span><br><span class="line">rect_area = w*h <span class="comment"># 外接矩形面积</span></span><br><span class="line">extent = <span class="built_in">float</span>(area) / rect_area</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;轮廓面积与边界矩形比&#x27;</span>, extent)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="外接圆"><a href="#外接圆" class="headerlink" title="外接圆"></a>外接圆</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 承接了上一小节的 cnt</span></span><br><span class="line">(x, y), radius = cv2.minEnclosingCircle(cnt)</span><br><span class="line">center = (<span class="built_in">int</span>(x), <span class="built_in">int</span>(y))</span><br><span class="line">radius = <span class="built_in">int</span>(radius)</span><br><span class="line">img = cv2.circle(img, center, radius, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line">cv2.show(img,<span class="string">&#x27;img&#x27;</span>) <span class="comment"># 展示处理后的图像</span></span><br></pre></td></tr></table></figure>
+
+<p>一个三角形画出了外接矩形和外接圆</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405200925076.png" alt="image-20240520092541997"></p>
+<h2 id="模板匹配"><a href="#模板匹配" class="headerlink" title="模板匹配"></a>模板匹配</h2><p>模板匹配和卷积原理很像，模板在原图像上从原点开始滑动，计算模板与（图像被模板覆盖的地方）的差别程度，这个差别程度的计算方法在 opencv 里有 6 种，然后将每次计算的结果放入一个矩阵，作为结果输出。假如原图形是 A * B 大小， 而模板是 a * b 大小，则输出结果的矩阵是（A - a  + 1）*（B - b + 1）</p>
+<ul>
+<li>TM_SQDIFF：计算平方不同，计算出来的值越小，越相关</li>
+<li>TM_CCORR：计算相关性，计算出来的值越大，越相关</li>
+<li>TM_CCOEFF：计算相关系数，计算出来的值越大，越相关</li>
+<li>TM_SQDIFF_NORMED：计算归一化平方不同，计算出来的值越接近0，越相关</li>
+<li>TM_CCORR_NORMED：计算归一化相关性，计算出来的值越接近1，越相关</li>
+<li>TM_CCOEFF_NORMED：计算归一化相关系数，计算出来的值越接近1，越相关</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">template = cv2.imread(<span class="string">&#x27;face.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">h, w = template.shape[:<span class="number">2</span>]</span><br><span class="line">res = cv2.matchTemplate(img, template, cv2.TM_SQDIFF)</span><br><span class="line">min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)</span><br><span class="line"><span class="comment"># 匹配多个对象</span></span><br><span class="line">res = cv2.matchTemplate(img, template, cv2.TM_SQDIFF_NORMED)</span><br><span class="line">threshold = <span class="number">0.8</span></span><br><span class="line"><span class="comment"># 取匹配程度大于百分之80的坐标</span></span><br><span class="line">loc = np.where(res &gt;= threshold)</span><br><span class="line"><span class="comment"># 画出</span></span><br><span class="line"><span class="keyword">for</span> pt <span class="keyword">in</span> <span class="built_in">zip</span>(*loc[::-<span class="number">1</span>]):</span><br><span class="line">    bottom_right = (pt[<span class="number">0</span>] + w, pt[<span class="number">1</span>] + h)</span><br><span class="line">    cv2.rectangle(img, pt, bottom_right, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241417173.png" alt="image-20240524141705079"></p>
+<p>cv2.calcHist(images, channels, mask, histSize, ranges)</p>
+<ul>
+<li>images：原图像图像格式为 uint8 或 float32。当传入函数时，用中括号 [] 括，例如 [img]</li>
+<li>channels：同样用中括号括来他会告函数我们统幅图 像的直方图。如果入图像是灰度图它的值就是 [0] 如果是彩色图像的传入参数可以是 [0] [1] [2] 他们分别对应着 BGR</li>
+<li>mask：掩模图像。统整幅图像的直方图就把它为 None。但是如果想统图像某一部分的直方图，就制作一个掩模图像并使用它。</li>
+<li>histSize：BIN 的数目。也应用中括号括来</li>
+<li>ranges：像素值范围常为 [0256]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;cat.jpg&#x27;</span>, <span class="number">0</span>) <span class="comment"># 表示灰度图</span></span><br><span class="line">hist = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">hist.shape</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="mask-操作"><a href="#mask-操作" class="headerlink" title="mask 操作"></a>mask 操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建mask</span></span><br><span class="line">mask = np.zeros(img.shape[:<span class="number">2</span>], np.uint8)</span><br><span class="line">mask[<span class="number">100</span>:<span class="number">300</span>, <span class="number">100</span>:<span class="number">400</span>] = <span class="number">255</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;cat.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">masked_img = cv2.bitwise_and(img, img, mask=mask)</span><br><span class="line">hist_full = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">hist_mask = cv2.calcHist([img], [<span class="number">0</span>], mask, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"><span class="comment"># 绘制结果</span></span><br><span class="line">plt.subplot(<span class="number">221</span>), plt.imshow(img, <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">222</span>), plt.imshow(mask, <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">223</span>), plt.imshow(masked_img, <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">224</span>), plt.plot(hist_full), plt.plot(hist_mask)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241440546.png" alt="image-20240524144025475"></p>
+<h3 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 传入一个图像即可</span></span><br><span class="line">equ = cv2.equalizeHist(img)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241446689.png" alt="image-20240524144630569"></p>
+<h3 id="自适应直方图均衡化"><a href="#自适应直方图均衡化" class="headerlink" title="自适应直方图均衡化"></a>自适应直方图均衡化</h3><p>将图像分块，只在各自块内进行直方图均衡化处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clahe = cv2.createCLAHE(clipLimit=<span class="number">2.0</span>, tileGridSize=(<span class="number">8</span>,<span class="number">8</span>))</span><br><span class="line">res_clahe = clahe.apply(img)</span><br><span class="line">res = np.hstack((img,equ,res_clahe))</span><br><span class="line">cv_show(res,<span class="string">&#x27;res&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241451223.png" alt="image-20240524145111999"></p>
+<h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><p>点击去知乎看详解 -&gt;&gt;&gt; <a class="btn-anzhiyu outline orange larger" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358" 
+  title="傅里叶分析之掐死教程（完整版）"><i class="anzhiyufont anzhiyu-icon-circle-arrow-right"></i><span>傅里叶分析之掐死教程（完整版）</span></a></p>
+<p>傅里叶变换的作用</p>
+<ul>
+<li>高频：变化剧烈的灰度分量，例如边界。</li>
+<li>低频：变化缓慢的灰度分量，例如一片大海。</li>
+</ul>
+<p>滤波：</p>
+<ul>
+<li><p>低通滤波器：只保留低频，会使得图像模糊</p>
+</li>
+<li><p>高通滤波器：只保留高频，会使得图像细节增强</p>
+</li>
+<li><p>opencv中主要就是 cv2.dft() 和 cv2.idft()，输入图像需要先转换成np.float32 格式</p>
+</li>
+<li><p>得到的结果中频率为 0 的部分会在左上角，通常要转换到中心位置，可以通过 shift 变换来实现。</p>
+</li>
+<li><p>cv2.dft() 返回的结果是双通道的（实部，虚数），通常还需要转换成图像格式才能展示（0，255）</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">img_float32 = np.float32(img)</span><br><span class="line"></span><br><span class="line">dft = cv2.dft(img_float32, flags = cv2.DFT_COMPLEX_OUTPUT)</span><br><span class="line">dft_shift = np.fft.fftshift(dft)</span><br><span class="line"><span class="comment"># 得到灰度图能表示的形式</span></span><br><span class="line">magnitude_spectrum = <span class="number">20</span>*np.log(cv2.magnitude(dft_shift[:,:,<span class="number">0</span>],dft_shift[:,:,<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Input Image&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">122</span>),plt.imshow(magnitude_spectrum,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Magnitude Spectrum&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241523408.png" alt="image-20240524152306308"></p>
+<h3 id="低通滤波"><a href="#低通滤波" class="headerlink" title="低通滤波"></a>低通滤波</h3> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">img_float32 = np.float32(img)</span><br><span class="line"></span><br><span class="line">dft = cv2.dft(img_float32, flags = cv2.DFT_COMPLEX_OUTPUT)</span><br><span class="line">dft_shift = np.fft.fftshift(dft)</span><br><span class="line"></span><br><span class="line">rows, cols = img.shape</span><br><span class="line">crow,ccol = <span class="built_in">int</span>(row/<span class="number">2</span>),<span class="built_in">int</span>(cols/<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 低通滤波</span></span><br><span class="line">mask = np.zeros((rows, cols, <span class="number">2</span>),np.uint8)</span><br><span class="line">mask[crow-<span class="number">30</span>:crow+<span class="number">30</span>, ccol-<span class="number">30</span>:ccol+<span class="number">30</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># IDFT</span></span><br><span class="line">fshift = dft_shift*mask</span><br><span class="line">f_ishift = np.fft.ifftshift(fshift)</span><br><span class="line">img_back = cv2.idft(f_ishift)</span><br><span class="line">img_back = cv2.magnitude(img_back[:,:,<span class="number">0</span>],img_back[:,:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Input Image&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img_back,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Result&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241545508.png" alt="image-20240524154510402"></p>
+<h3 id="高通滤波"><a href="#高通滤波" class="headerlink" title="高通滤波"></a>高通滤波</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;lena.jpg&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">img_float32 = np.float32(img)</span><br><span class="line"></span><br><span class="line">dft = cv2.dft(img_float32, flags = cv2.DFT_COMPLEX_OUTPUT)</span><br><span class="line">dft_shift = np.fft.fftshift(dft)</span><br><span class="line"></span><br><span class="line">rows, cols = img.shape</span><br><span class="line">crow,ccol = <span class="built_in">int</span>(row/<span class="number">2</span>),<span class="built_in">int</span>(cols/<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 低通滤波</span></span><br><span class="line">mask = np.ones((rows, cols, <span class="number">2</span>),np.uint8)</span><br><span class="line">mask[crow-<span class="number">30</span>:crow+<span class="number">30</span>, ccol-<span class="number">30</span>:ccol+<span class="number">30</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># IDFT</span></span><br><span class="line">fshift = dft_shift*mask</span><br><span class="line">f_ishift = np.fft.ifftshift(fshift)</span><br><span class="line">img_back = cv2.idft(f_ishift)</span><br><span class="line">img_back = cv2.magnitude(img_back[:,:,<span class="number">0</span>],img_back[:,:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Input Image&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img_back,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Result&#x27;</span>),plt.xticks([]),plt.yticks([])</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405241546845.png" alt="image-20240524154644740"></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/avatar.jpeg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/avatar.jpeg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Abei</div><div class="post-copyright__author_desc">学无止境，烟酒生活</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://abeibiji.cn/2024/05/12/openCV%E5%AD%A6%E4%B9%A0/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://abeibiji.cn/2024/05/12/openCV学习/')">openCV 学习</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/pay/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/pay/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/pay/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/pay/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://abeibiji.cn/2024/05/12/openCV%E5%AD%A6%E4%B9%A0/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=openCV 学习&amp;url=http://abeibiji.cn/2024/05/12/openCV%E5%AD%A6%E4%B9%A0/&amp;pic=https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291424669.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="null" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://abeibiji.cn" target="_blank">阿北笔记</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Python/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Python<span class="tagsPageCount">3</span></a><a class="post-meta__box__tags" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>图像处理<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202407031249050.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/11/%E4%BC%99%E4%BC%B4%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202406032223397.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">伙伴匹配系统</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/12/%E4%BA%91%E6%97%85%E8%A1%8C-%E4%BC%8A%E6%96%AF%E5%9D%A6%E5%B8%83%E5%B0%94/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405122241706.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">云旅行 - 伊斯坦布尔</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/05/08/%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF%E8%B8%A9%E5%9D%91/" title="部署上线踩坑"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405091852946.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-history fa-fw"></i> 2024-05-12</div><div class="title">部署上线踩坑</div></div></a></div><div><a href="/2024/05/08/%E9%A9%AC%E8%B5%9B%E5%85%8B%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3/" title="马赛克项目部署文档"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291428583.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-history fa-fw"></i> 2024-05-29</div><div class="title">马赛克项目部署文档</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">踩坑、旅行、吐槽</b>的个人生活记录，还有<b style="color:#fff">技术学习</b>和<b style="color:#fff">阅读分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里解决遇到的<b style="color:#fff">问题</b>，获取宝贵的<b style="color:#fff">踩坑经验</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">Abei</h1><div class="author-info__desc">学无止境，烟酒生活</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://qm.qq.com/cgi-bin/qm/qr?k=okp4sxwdxgy0r6hgoueO-1zWTPl044RT" target="_blank" title="QQ"><i class="anzhiyufont anzhiyu-icon-qq"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#openCV%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">openCV笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%AF%BB%E5%8F%96"><span class="toc-number">1.1.</span> <span class="toc-text">图像读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E8%AF%BB%E5%8F%96"><span class="toc-number">1.2.</span> <span class="toc-text">视频读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%8F%96%E9%83%A8%E5%88%86%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.</span> <span class="toc-text">截取部分图像数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E9%80%9A%E9%81%93%E6%8F%90%E5%8F%96"><span class="toc-number">1.4.</span> <span class="toc-text">颜色通道提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E5%A1%AB%E5%85%85"><span class="toc-number">1.5.</span> <span class="toc-text">边界填充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text">图像融合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%98%88%E5%80%BC"><span class="toc-number">1.7.</span> <span class="toc-text">图像阈值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91%E5%A4%84%E7%90%86"><span class="toc-number">1.8.</span> <span class="toc-text">图像平滑处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6-%E8%85%90%E8%9A%80%E6%93%8D%E4%BD%9C%E5%92%8C%E8%86%A8%E8%83%80%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.</span> <span class="toc-text">形态学-腐蚀操作和膨胀操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E8%BF%90%E7%AE%97%E4%B8%8E%E9%97%AD%E8%BF%90%E7%AE%97"><span class="toc-number">1.10.</span> <span class="toc-text">开运算与闭运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E8%BF%90%E7%AE%97"><span class="toc-number">1.11.</span> <span class="toc-text">梯度运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BC%E5%B8%BD%E4%B8%8E%E9%BB%91%E5%B8%BD"><span class="toc-number">1.12.</span> <span class="toc-text">礼帽与黑帽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%A2%AF%E5%BA%A6-Sobel%E7%AE%97%E5%AD%90"><span class="toc-number">1.13.</span> <span class="toc-text">图像梯度 - Sobel算子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%A2%AF%E5%BA%A6-Scharr%E7%AE%97%E5%AD%90"><span class="toc-number">1.13.1.</span> <span class="toc-text">图像梯度 - Scharr算子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%A2%AF%E5%BA%A6-laplacian%E7%AE%97%E5%AD%90"><span class="toc-number">1.13.2.</span> <span class="toc-text">图像梯度 - laplacian算子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canny-%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="toc-number">1.14.</span> <span class="toc-text">Canny 边缘检测算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94"><span class="toc-number">1.15.</span> <span class="toc-text">图像金字塔</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E9%87%91%E5%AD%97%E5%A1%94"><span class="toc-number">1.15.1.</span> <span class="toc-text">高斯金字塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E9%87%91%E5%AD%97%E5%A1%94"><span class="toc-number">1.15.2.</span> <span class="toc-text">拉普拉斯金字塔</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%BD%AE%E5%BB%93"><span class="toc-number">1.16.</span> <span class="toc-text">图像轮廓</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AE%E5%BB%93%E8%BF%91%E4%BC%BC"><span class="toc-number">1.16.1.</span> <span class="toc-text">轮廓近似</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E7%9F%A9%E5%BD%A2"><span class="toc-number">1.16.2.</span> <span class="toc-text">边界矩形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E6%8E%A5%E5%9C%86"><span class="toc-number">1.16.3.</span> <span class="toc-text">外接圆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%8C%B9%E9%85%8D"><span class="toc-number">1.17.</span> <span class="toc-text">模板匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="toc-number">1.18.</span> <span class="toc-text">直方图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mask-%E6%93%8D%E4%BD%9C"><span class="toc-number">1.18.1.</span> <span class="toc-text">mask 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96"><span class="toc-number">1.18.2.</span> <span class="toc-text">直方图均衡化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96"><span class="toc-number">1.18.3.</span> <span class="toc-text">自适应直方图均衡化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">1.19.</span> <span class="toc-text">傅里叶变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2"><span class="toc-number">1.19.1.</span> <span class="toc-text">低通滤波</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2"><span class="toc-number">1.19.2.</span> <span class="toc-text">高通滤波</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/07/03/%E4%B8%89%E6%98%9FGalaxy-S24-Ultra/" title="三星Galaxy S24 Ultra"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202407031249050.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="三星Galaxy S24 Ultra"/></a><div class="content"><a class="title" href="/2024/07/03/%E4%B8%89%E6%98%9FGalaxy-S24-Ultra/" title="三星Galaxy S24 Ultra">三星Galaxy S24 Ultra</a><time datetime="2024-07-03T04:46:37.000Z" title="发表于 2024-07-03 12:46:37">2024-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202407022151103.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="动态规划"/></a><div class="content"><a class="title" href="/2024/07/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a><time datetime="2024-07-02T13:29:55.000Z" title="发表于 2024-07-02 21:29:55">2024-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/%E7%9C%BC%E5%BA%95%E8%A7%86%E7%9B%98%E5%88%86%E5%89%B2%E2%80%94%E2%80%94segtran/" title="眼底视盘分割——segtran"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405291435683.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="眼底视盘分割——segtran"/></a><div class="content"><a class="title" href="/2024/06/25/%E7%9C%BC%E5%BA%95%E8%A7%86%E7%9B%98%E5%88%86%E5%89%B2%E2%80%94%E2%80%94segtran/" title="眼底视盘分割——segtran">眼底视盘分割——segtran</a><time datetime="2024-06-25T10:57:50.000Z" title="发表于 2024-06-25 18:57:50">2024-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/18/%E5%8A%9B%E6%89%A3%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95/" title="力扣算法记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202406182126381.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="力扣算法记录"/></a><div class="content"><a class="title" href="/2024/06/18/%E5%8A%9B%E6%89%A3%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95/" title="力扣算法记录">力扣算法记录</a><time datetime="2024-06-18T12:38:24.000Z" title="发表于 2024-06-18 20:38:24">2024-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/07/%E5%B0%8F%E7%B1%B3SU7/" title="小米SU7"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202406071117501.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小米SU7"/></a><div class="content"><a class="title" href="/2024/06/07/%E5%B0%8F%E7%B1%B3SU7/" title="小米SU7">小米SU7</a><time datetime="2024-06-07T03:15:19.000Z" title="发表于 2024-06-07 11:15:19">2024-06-07</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/76410006@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/avatar.jpeg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/abeifang" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div><div id="workboard"><div id="runtimeTextTip"></div></div><div class="footer_custom_text">©2024 - forever By Abei</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a></p></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=okp4sxwdxgy0r6hgoueO-1zWTPl044RT" title="博主"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博主"/><span class="back-menu-item-text">博主</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" href="/null" title="项目暂未上线"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="项目暂未上线"/><span class="back-menu-item-text">项目暂未上线</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 文章列表</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 文章分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 专栏</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/tags/%E6%9D%82%E8%B0%88"><i class="anzhiyufont anzhiyu-icon-heartbeat faa-tada" style="font-size: 0.9em;"></i><span> 杂谈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/%E5%87%BA%E6%B8%B8%E8%AE%B0%E5%BD%95"><i class="anzhiyufont anzhiyu-icon-thumbs-up faa-tada" style="font-size: 0.9em;"></i><span> 旅行</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill faa-tada" style="font-size: 0.9em;"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/Awebsite/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 优质站点</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-circle-dot faa-tada" style="font-size: 0.9em;"></i><span> 关于本站</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Java/" style="font-size: 0.88rem;">Java<sup>5</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>3</sup></a><a href="/tags/%E4%B8%89%E6%98%9F/" style="font-size: 0.88rem;">三星<sup>1</sup></a><a href="/tags/%E4%B8%8A%E7%BA%BF/" style="font-size: 0.88rem;">上线<sup>2</sup></a><a href="/tags/%E4%BA%91%E6%97%85%E8%A1%8C/" style="font-size: 0.88rem;">云旅行<sup>4</sup></a><a href="/tags/%E5%87%BA%E6%B8%B8%E8%AE%B0%E5%BD%95/" style="font-size: 0.88rem;">出游记录<sup>1</sup></a><a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 0.88rem;">图像处理<sup>1</sup></a><a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">工具<sup>1</sup></a><a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 0.88rem;">杂谈<sup>5</sup></a><a href="/tags/%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1/" style="font-size: 0.88rem;">每日打卡<sup>1</sup></a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">深度学习<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.88rem;">算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/" style="font-size: 0.88rem;">算法研究<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95/" style="font-size: 0.88rem;">算法记录<sup>1</sup></a><a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 0.88rem;">踩坑<sup>2</sup></a><a href="/tags/%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">阅读分享<sup>1</sup></a><a href="/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5/" style="font-size: 0.88rem;">项目实践<sup>3</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="1966162185" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.music.163.com/m/playlist/id=9552175492&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("05/08/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Abei 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/08/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.cbd.int/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

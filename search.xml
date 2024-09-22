@@ -4,6 +4,46 @@
   
     
     <entry>
+      <title>深度学习数据库存档</title>
+      <link href="/2024/09/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E6%A1%A3/"/>
+      <url>/2024/09/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E6%A1%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="眼睛外部数据集">眼睛外部数据集</h1><p>汇总：<a href="http://irisdata.etrovub.be/">眼睛数据集大全</a></p><p><a href="https://iab-rubric.org/resources/biometric-datasets/iris">ImageAnalysis &amp; Biometrics Lab</a></p><h2 id="生物识别虹膜-角膜数据库"><a href="http://www-labs.iro.umontreal.ca/~labimage/IrisCorneaDataset/">生物识别虹膜-角膜数据库</a></h2><p>我们的多模式数据库包含 39 名不同种族的受试者，其中包括 22 名女性和 17名男性，除了常见的视觉缺陷（近视、远视、散光）外，没有接受过手术或患有其他疾病。平均年龄±SD（标准差）为36.5±15.6岁（范围：23-82岁）。对于每个受试者，通过包括网络摄像头显微镜的简单装置捕获虹膜图像，同时使用角膜地形图仪拍摄角膜形状。采集在两次不同的会话中进行，间隔至少一个月的时间间隔，以评估受试者内的变异性。我们在每个会话中对每个角膜进行了四(4) 次采集，对每个虹膜进行了十 (10) 次采集，总共获得了 780 个虹膜图像和312 个角膜地形图。</p><p>请在您的出版物中提供此参考。</p><ul><li>Nassima Kihal, Salim Chitroub, Arnaud Polette, Isabelle Brunette,Jean Meunier: “Efficient multimodal ocular biometric system for personauthentication based on iris texture and corneal shape”. IET Biometrics6(6): 379-386 (2017) Nassima Kihal、Salim Chitroub、ArnaudPolette、Isabelle Brunette、JeanMeunier：“基于虹膜纹理和角膜形状的高效多模态眼部生物识别系统，用于人员身份验证”。IET 生物识别 6(6): 379-386 (2017)</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> 算法研究 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>生成对抗网络GANs</title>
+      <link href="/2024/09/10/%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9CGANs/"/>
+      <url>/2024/09/10/%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9CGANs/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>三星Galaxy S24 Ultra</title>
       <link href="/2024/07/03/%E4%B8%89%E6%98%9FGalaxy-S24-Ultra/"/>
       <url>/2024/07/03/%E4%B8%89%E6%98%9FGalaxy-S24-Ultra/</url>
@@ -248,35 +288,6 @@
       
       
         <tags>
-            
-            <tag> Java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>API开发平台</title>
-      <link href="/2024/05/28/API%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0/"/>
-      <url>/2024/05/28/API%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0/</url>
-      
-        <content type="html"><![CDATA[# API 开放平台背景：1. 前端开发需要用到后端接口2. 使用现成的系统的功能（http://api.btstu.cn/）做一个 API 接口平台：1. 防止攻击（安全性）2. 不能随便调用（限制、开通）3. 统计调用次数4. 计费5. 流量保护6. API 接入## 项目介绍做一个提供 API 接口调用的平台，用户可以注册登录，开通接口调用权限。用户可以使用接口，并且每次调用会进行统计。管理员可以发布接口、下线接口、接入接口，以及可视化接口的调用情况、数据分析。## 业务流程![image-20240528203059561](https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405282030600.png)## 技术选型前端：1. Ant Design Pro2. React3. Ant Design Procomponents4. Umi5. Umi Request (Axios 的封装)后端：1. Java 、Spring Boot2. Spring Boot Starter （SDK 开发）3. ？？？## 需求分析1. 管理员可以对接口信息进行增删改查2. 用户可以访问前台，查看接口信息111]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习 </category>
-          
-          <category> 个人项目 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 项目实践 </tag>
             
             <tag> Java </tag>
             

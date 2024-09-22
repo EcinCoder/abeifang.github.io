@@ -6,7 +6,7 @@
   <link href="http://abeibiji.cn/atom.xml" rel="self"/>
   
   <link href="http://abeibiji.cn/"/>
-  <updated>2024-09-22T12:16:10.182Z</updated>
+  <updated>2024-09-22T12:27:07.619Z</updated>
   <id>http://abeibiji.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://abeibiji.cn/2024/09/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E6%A1%A3/"/>
     <id>http://abeibiji.cn/2024/09/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E6%A1%A3/</id>
     <published>2024-09-22T07:30:20.000Z</published>
-    <updated>2024-09-22T12:16:10.182Z</updated>
+    <updated>2024-09-22T12:27:07.619Z</updated>
     
     <content type="html"><![CDATA[<h1 id="眼睛外部数据集">眼睛外部数据集</h1><p>汇总：<a href="http://irisdata.etrovub.be/">眼睛数据集大全</a></p><p><a href="https://iab-rubric.org/resources/biometric-datasets/iris">ImageAnalysis &amp; Biometrics Lab</a></p><h2 id="生物识别虹膜-角膜数据库"><a href="http://www-labs.iro.umontreal.ca/~labimage/IrisCorneaDataset/">生物识别虹膜-角膜数据库</a></h2><p>我们的多模式数据库包含 39 名不同种族的受试者，其中包括 22 名女性和 17名男性，除了常见的视觉缺陷（近视、远视、散光）外，没有接受过手术或患有其他疾病。平均年龄±SD（标准差）为36.5±15.6岁（范围：23-82岁）。对于每个受试者，通过包括网络摄像头显微镜的简单装置捕获虹膜图像，同时使用角膜地形图仪拍摄角膜形状。采集在两次不同的会话中进行，间隔至少一个月的时间间隔，以评估受试者内的变异性。我们在每个会话中对每个角膜进行了四(4) 次采集，对每个虹膜进行了十 (10) 次采集，总共获得了 780 个虹膜图像和312 个角膜地形图。</p><p>请在您的出版物中提供此参考。</p><ul><li>Nassima Kihal, Salim Chitroub, Arnaud Polette, Isabelle Brunette,Jean Meunier: “Efficient multimodal ocular biometric system for personauthentication based on iris texture and corneal shape”. IET Biometrics6(6): 379-386 (2017) Nassima Kihal、Salim Chitroub、ArnaudPolette、Isabelle Brunette、JeanMeunier：“基于虹膜纹理和角膜形状的高效多模态眼部生物识别系统，用于人员身份验证”。IET 生物识别 6(6): 379-386 (2017)</li></ul>]]></content>
     

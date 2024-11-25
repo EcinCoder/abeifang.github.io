@@ -6,7 +6,7 @@
   <link href="http://abeibiji.cn/atom.xml" rel="self"/>
   
   <link href="http://abeibiji.cn/"/>
-  <updated>2024-09-26T10:17:28.624Z</updated>
+  <updated>2024-11-25T10:13:35.622Z</updated>
   <id>http://abeibiji.cn/</id>
   
   <author>
@@ -15,6 +15,88 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>青岛</title>
+    <link href="http://abeibiji.cn/2024/11/25/%E9%9D%92%E5%B2%9B/"/>
+    <id>http://abeibiji.cn/2024/11/25/%E9%9D%92%E5%B2%9B/</id>
+    <published>2024-11-25T10:11:59.000Z</published>
+    <updated>2024-11-25T10:13:35.622Z</updated>
+    
+    <content type="html"><![CDATA[<div class="timeline orange"><div class="timeline-item headline"><div class="timeline-item-title"><div class="item-circle"><p>2022</p></div></div></div><div class="timeline-item"><div class="timeline-item-title"><div class="item-circle"><p>01-02</p></div></div><div class="timeline-item-content"><p>这是测试页面</p></div></div></div><h1 id="青岛">青岛</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;div class=&quot;timeline orange&quot;&gt;&lt;div class=&quot;timeline-item headline&quot;&gt;&lt;div class=&quot;timeline-item-title&quot;&gt;&lt;div class=&quot;item-circle&quot;&gt;&lt;p&gt;2022&lt;/p&gt;
+&lt;/di</summary>
+      
+    
+    
+    
+    <category term="旅行攻略" scheme="http://abeibiji.cn/categories/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/"/>
+    
+    
+    <category term="旅行攻略" scheme="http://abeibiji.cn/tags/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>通用方法存档</title>
+    <link href="http://abeibiji.cn/2024/10/15/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95%E5%AD%98%E6%A1%A3/"/>
+    <id>http://abeibiji.cn/2024/10/15/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95%E5%AD%98%E6%A1%A3/</id>
+    <published>2024-10-15T10:18:28.000Z</published>
+    <updated>2024-10-16T02:09:22.299Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="server-sent-eventssse前后端配置">Server-SentEvents（SSE）前后端配置</h2><h3 id="前端">前端</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> eventSource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">'http://47.109.186.180:8102/api/test/sse'</span>); <span class="comment">// 替换为后端地址</span></span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"链接成功"</span>,event)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"收到消息"</span>,event)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"链接失败"</span>,event)</span><br><span class="line">}</span><br></pre></td></tr></table></figure><h3 id="后端">后端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping("/test")</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">testC</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">ExecutorService</span> <span class="variable">executorService</span> <span class="operator">=</span> Executors.newCachedThreadPool();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> CopyOnWriteArrayList&lt;SseEmitter&gt; emitters = <span class="keyword">new</span> <span class="title class_">CopyOnWriteArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)</span></span><br><span class="line">    <span class="keyword">public</span> SseEmitter <span class="title function_">handleSse</span><span class="params">()</span> {</span><br><span class="line">        <span class="type">SseEmitter</span> <span class="variable">emitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SseEmitter</span>(Long.MAX_VALUE); <span class="comment">// 设置超时时间为 Long.MAX_VALUE</span></span><br><span class="line">        emitters.add(emitter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 移除已完成的连接</span></span><br><span class="line">        emitter.onCompletion(() -&gt; emitters.remove(emitter));</span><br><span class="line">        emitter.onTimeout(() -&gt; emitters.remove(emitter));</span><br><span class="line">        <span class="keyword">return</span> emitter;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向前端发送消息接口</span></span><br><span class="line">    <span class="meta">@PostMapping("/send")</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">(<span class="meta">@RequestBody</span> String message)</span> {</span><br><span class="line">        <span class="keyword">for</span> (SseEmitter emitter : emitters) {</span><br><span class="line">            executorService.submit(() -&gt; {</span><br><span class="line">                <span class="keyword">try</span> {</span><br><span class="line">                    emitter.send(message);</span><br><span class="line">                } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                    emitters.remove(emitter); <span class="comment">// 如果发送失败，移除该连接</span></span><br><span class="line">                }</span><br><span class="line">            });</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="全局事件总线-mitt">全局事件总线 mitt</h2><p>安装mitt依赖</p><blockquote><p>npm install mitt</p></blockquote><p>src 目录下创建/bus/index.ts</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入mitt插件，mitt是一个方法，方法执行返回bus对象。</span></span><br><span class="line"><span class="keyword">import</span> mitt <span class="keyword">from</span> <span class="string">"mitt"</span>;</span><br><span class="line"><span class="keyword">let</span> $bus = <span class="title function_">mitt</span>();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> $bus;</span><br></pre></td></tr></table></figure><p>监听事件</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=<span class="string">"ts"</span> setup&gt;</span><br><span class="line"><span class="keyword">import</span> $bus <span class="keyword">from</span> <span class="string">"../../bus"</span> <span class="comment">// 找到bus文件夹</span></span><br><span class="line"><span class="comment">// 监听事件on（"监听事件名称","接收的事件数据回调"）</span></span><br><span class="line">$bus.<span class="title function_">on</span>(<span class="string">"getName"</span>,<span class="function">(<span class="params">name</span>) =&gt;</span> {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">    })</span><br><span class="line">    </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;server-sent-eventssse前后端配置&quot;&gt;Server-Sent
+Events（SSE）前后端配置&lt;/h2&gt;
+&lt;h3 id=&quot;前端&quot;&gt;前端&lt;/h3&gt;
+&lt;figure class=&quot;highlight ts&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="http://abeibiji.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="踩坑" scheme="http://abeibiji.cn/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+    <category term="上线" scheme="http://abeibiji.cn/tags/%E4%B8%8A%E7%BA%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>uniapp通知开发</title>
+    <link href="http://abeibiji.cn/2024/10/07/uniapp%E9%80%9A%E7%9F%A5%E5%BC%80%E5%8F%91/"/>
+    <id>http://abeibiji.cn/2024/10/07/uniapp%E9%80%9A%E7%9F%A5%E5%BC%80%E5%8F%91/</id>
+    <published>2024-10-07T02:20:25.000Z</published>
+    <updated>2024-10-10T07:57:27.802Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="需求分析">需求分析</h2><ol type="1"><li>首次下载（2周） – 执行<strong>血糖控制不佳</strong>推荐逻辑</li><li>两周后仍血糖控制不佳 – 执行<strong>密集通知</strong></li><li>直到达成血糖控制，则转为<strong>日常通知</strong></li></ol><p><strong>血糖控制不佳：</strong></p><ul><li>3天内血糖值有2次大于控制范围上限，<strong>空腹血糖&gt;7.0mmol/L</strong>或<strong>餐后2小时（任意血糖）&gt;11.1mmol/L</strong>.（通知内容为：您的血糖控制不佳，建议您及时联系健康团队）</li><li>3天内有4次没有按时,常规监测血糖.（通知内容为：为了您的健康，请您按时测血糖）触发通知，app及短信提醒患者极其绑定家人</li></ul><p><strong>密集通知：</strong></p><ul><li>空腹+三餐后（6:00、9：00、14:00、20:00）发出通知，提醒用户测血糖。</li><li>7:00、11:30、17：30发出通知，提醒用户用药。</li><li>医生上线时，通知所有血糖控制不佳的患者。</li><li>血糖不佳的患者上线时，通知健康管理团队的医生和护士。</li></ul><p><strong>日常通知：</strong></p><ul><li>下载后对于未能完成基础健康资料填写的，每隔1天11：00时通知：为了您的健康，请完善您的个人资料填写。</li><li>下载过1周后，每2天1次提醒办理慢病或特病。</li><li>每周有3天连续空腹+餐后6:00、20:00发出通知：为了您的健康，请您测血糖。</li><li>7:00、11:30、17：30发出通知，提醒用户用药。</li><li>复诊提醒，出院后1周时提醒：为了您的健康，请及时到医院复诊。下载后每个月提醒：为了您的健康，请及时到医院复诊。</li><li>测血糖大于25mmol/L时，或血糖小于3.9mmol/L（app与短信），提醒：为了您的生命安全，请及时到医院就诊。（同时提醒患者家属：您家人的血糖已经超出了危急值，请通知他及时到医院就诊。）</li></ul><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blog/202410071104117.png" alt="image-20241007110355009" style="zoom:50%;"></p><figure><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blog/202410071327869.png" alt="image-20241007132722803"><figcaption aria-hidden="true">image-20241007132722803</figcaption></figure><figure><img src="C:/Users/EcinCoder/AppData/Roaming/Typora/typora-user-images/image-20241007132828151.png" alt="image-20241007132828151"><figcaption aria-hidden="true">image-20241007132828151</figcaption></figure><p>在这个方法里面校验之后更新</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;需求分析&quot;&gt;需求分析&lt;/h2&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;首次下载（2周） – 执行&lt;strong&gt;血糖控制不佳&lt;/strong&gt;推荐逻辑&lt;/li&gt;
+&lt;li&gt;两周后仍血糖控制不佳 – 执行&lt;strong&gt;密集通知&lt;/strong&gt;&lt;/li&gt;
+&lt;l</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="http://abeibiji.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="项目" scheme="http://abeibiji.cn/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>每周学习复盘</title>
@@ -452,88 +534,6 @@
     
     
     <category term="每日打卡" scheme="http://abeibiji.cn/tags/%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>屈光转裸眼算法研究记录</title>
-    <link href="http://abeibiji.cn/2024/05/28/%E5%B1%88%E5%85%89%E8%BD%AC%E8%A3%B8%E7%9C%BC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%95/"/>
-    <id>http://abeibiji.cn/2024/05/28/%E5%B1%88%E5%85%89%E8%BD%AC%E8%A3%B8%E7%9C%BC%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%95/</id>
-    <published>2024-05-28T02:02:30.000Z</published>
-    <updated>2024-05-29T07:57:50.469Z</updated>
-    
-    <content type="html"><![CDATA[<div class="tip info"><p>记录从头开始的学术研究过程 </p></div><h2 id="ChatGPT-建议"><a href="#ChatGPT-建议" class="headerlink" title="ChatGPT 建议"></a>ChatGPT 建议</h2><p>问题：我看了视网膜血管分割的原理，是判断每个像素点是否为血管从而完成分割。而我现在有一个算法任务，需要根据眼底图像和屈光度数生成裸眼图像，我看了许久还是没有思路，请你帮我想想从什么角度去完成此算法</p><h4 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h4><p>这听起来是一个有趣但也挑战性的算法任务！要根据眼底图像和屈光度数生成裸眼图像，你可以考虑以下几个方向：</p><ol><li><strong>图像处理与分割</strong>：首先，你可能需要对眼底图像进行预处理和分割，以便提取出感兴趣的特征，比如眼球边缘、视网膜等。这可能涉及到图像增强、边缘检测、分割算法等技术。</li><li><strong>屈光度数信息融合</strong>：屈光度数是对眼球光学系统的描述，可以通过屈光度数信息来推断眼睛的折射、散光等情况。你可以尝试将这些信息融合到图像处理的过程中，比如根据不同的屈光度数调整图像的对比度、亮度等参数，以模拟不同屈光度的视觉效果。</li><li><strong>视觉仿真与模型构建</strong>：考虑构建一个视觉仿真模型，该模型能够根据眼底图像和屈光度数生成对应的裸眼图像。这可能涉及到机器学习、深度学习等技术，你可以尝试使用已有的数据集进行训练，以学习眼底图像和屈光度数之间的关联，然后生成裸眼图像。</li><li><strong>医学知识与专家咨询</strong>：考虑到眼睛的复杂结构和视觉系统，如果可能的话，最好咨询眼科专家或医生，了解更多关于眼底图像、屈光度数和裸眼图像之间的关系，以及可能需要考虑的其他因素。</li></ol><p>综合考虑以上几点，你可以尝试设计一个综合利用图像处理、屈光度数信息和机器学习技术的算法，以实现根据眼底图像和屈光度数生成裸眼图像的目标。希望这些想法能够给你一些启发！</p><h2 id="眼底图像组成"><a href="#眼底图像组成" class="headerlink" title="眼底图像组成"></a>眼底图像组成</h2><p><strong>视盘(optic disc, OD)：</strong></p><ul><li>全称视神经盘，也叫视神经乳头，视网膜由黄斑向鼻侧约3mm处有一直径约1.5mm，境界清楚的淡红色圆盘状结构，称为视神经盘，简称视盘，如同一个盘子。</li></ul><p><strong>视杯（optic cup，OC）：</strong></p><ul><li>眼底所见视乳头有一个正常的生理性凹陷叫视杯（optic cup），如同一个杯子。杯子与盘子的直径之比就叫杯盘比，即C&#x2F;D。正常C&#x2F;D在0.3左右且一般不超过0.5。</li></ul><p><strong>视网膜中央动脉、静脉：</strong></p><ul><li>从视盘发出、放射状走形的大血管。其中，动脉呈鲜红色，静脉呈暗红色，动脉与静脉管径之比为2:3。</li></ul><p><strong>黄斑部：</strong></p><ul><li>位于眼球后极正中部，大小约一个视盘或稍大，无血管，其中心有一针尖大的反光点称中心凹光反射。</li></ul><p><strong>视网膜：</strong></p><ul><li>视网膜为一层神经组织构成的薄膜，是眼球壁的最内层。正常视网膜是无色透明的，因为其下的脉络膜充满血管，双眼眼底照相时视网膜呈均匀的深桔红色。</li></ul><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405281011996.png" alt="image-20240528101137886"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;div class=&quot;tip info&quot;&gt;&lt;p&gt;记录从头开始的学术研究过程 &lt;/p&gt;
-&lt;/div&gt;
-
-
-
-&lt;h2 id=&quot;ChatGPT-建议&quot;&gt;&lt;a href=&quot;#ChatGPT-建议&quot; class=&quot;headerlink&quot; title=&quot;ChatGPT 建议&quot;&gt;&lt;/a&gt;Ch</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="http://abeibiji.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="深度学习" scheme="http://abeibiji.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="算法研究" scheme="http://abeibiji.cn/tags/%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常踩坑</title>
-    <link href="http://abeibiji.cn/2024/05/15/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/"/>
-    <id>http://abeibiji.cn/2024/05/15/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/</id>
-    <published>2024-05-15T08:13:37.000Z</published>
-    <updated>2024-05-15T08:41:17.057Z</updated>
-    
-    <content type="html"><![CDATA[<div class="tip info"><p>记录在工作中不经意遇到的离谱bug </p></div><h1 id="日常踩坑"><a href="#日常踩坑" class="headerlink" title="日常踩坑"></a>日常踩坑</h1><h2 id="pycharm无法激活conda环境"><a href="#pycharm无法激活conda环境" class="headerlink" title="pycharm无法激活conda环境"></a>pycharm无法激活conda环境</h2><p>点击终端的时候，直接报错无法激活conda环境。并且已经设置了环境变量，且在自带的终端中可以激活。</p><p>解决方法：</p><p>​打开 Anaconda Prompt</p><p>​输入命令 conda init powershell</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;div class=&quot;tip info&quot;&gt;&lt;p&gt;记录在工作中不经意遇到的离谱bug &lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;日常踩坑&quot;&gt;&lt;a href=&quot;#日常踩坑&quot; class=&quot;headerlink&quot; title=&quot;日常踩坑&quot;&gt;&lt;/a&gt;日常踩坑&lt;/h1&gt;&lt;h2 id=&quot;p</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="http://abeibiji.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="踩坑" scheme="http://abeibiji.cn/tags/%E8%B8%A9%E5%9D%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>意大利 · 多洛米蒂</title>
-    <link href="http://abeibiji.cn/2024/05/13/%E6%84%8F%E5%A4%A7%E5%88%A9%20%C2%B7%20%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82/"/>
-    <id>http://abeibiji.cn/2024/05/13/%E6%84%8F%E5%A4%A7%E5%88%A9%20%C2%B7%20%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82/</id>
-    <published>2024-05-13T14:59:17.000Z</published>
-    <updated>2024-05-14T00:33:54.522Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="意大利-·-多洛米蒂"><a href="#意大利-·-多洛米蒂" class="headerlink" title="意大利 · 多洛米蒂"></a>意大利 · 多洛米蒂</h1><p>点击去B站看看 -&gt;&gt;&gt; <a class="btn-anzhiyu outline orange larger" href="https://www.bilibili.com/video/BV1mw411a7So?vd_source=3c345e27d8321a7372c0ef8871978426"   title="现实版魔戒世界！"><i class="anzhiyufont anzhiyu-icon-circle-arrow-right"></i><span>现实版魔戒世界！</span></a></p><h2 id="阿卑斯山下的骏马"><a href="#阿卑斯山下的骏马" class="headerlink" title="阿卑斯山下的骏马"></a>阿卑斯山下的骏马</h2><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132308893.png" alt="image-20240513230804757" style="zoom:80%;" /><h2 id="121"><a href="#121" class="headerlink" title="121"></a>121</h2><blockquote><p>好辽阔壮观的地貌啊，显得我们真是非常渺小的。埋个伏笔，后面有另一番风景。</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132310250.png" alt="image-20240513231045955"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132310042.png" alt="image-20240513231058738"></p><h2 id="山峰山"><a href="#山峰山" class="headerlink" title="山峰山"></a>山峰山</h2><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132314682.png" alt="image-20240513231442327"></p><blockquote><p>这种旅行太惬意了。碰个杯</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132316570.png" alt="image-20240513231645316"></p><blockquote><p>这个一看就是中国人去贴的。哈哈哈哈哈</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132318748.png" alt="image-20240513231815469"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132318082.png" alt="image-20240513231845941"></p><h2 id="奇幻天象"><a href="#奇幻天象" class="headerlink" title="奇幻天象"></a>奇幻天象</h2><blockquote><p>前方烟雾弹</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132319024.png" alt="image-20240513231950865"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132321796.png" alt="image-20240513232151682"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132322175.png" alt="image-20240513232247011"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132323078.png" alt="image-20240513232325012"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132323553.png" alt="image-20240513232335252"></p><h2 id="伏笔"><a href="#伏笔" class="headerlink" title="伏笔"></a>伏笔</h2><blockquote><p>魔戒山的另一番风味</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132326044.png" alt="image-20240513232630695"></p><blockquote><p>up的头发立起来了，是有被雷劈的风险的。太危险了</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132327436.png" alt="image-20240513232732177"></p><blockquote><p>无人机寄了</p></blockquote><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132328455.png" alt="image-20240513232842792"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132329163.png" alt="image-20240513232903410"></p><h2 id="云顶天宫"><a href="#云顶天宫" class="headerlink" title="云顶天宫"></a>云顶天宫</h2><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132330968.png" alt="image-20240513233004048"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132330436.png" alt="image-20240513233010814"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132330267.png" alt="image-20240513233021628"></p><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blogs/202405132330232.png" alt="image-20240513233049474"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;意大利-·-多洛米蒂&quot;&gt;&lt;a href=&quot;#意大利-·-多洛米蒂&quot; class=&quot;headerlink&quot; title=&quot;意大利 · 多洛米蒂&quot;&gt;&lt;/a&gt;意大利 · 多洛米蒂&lt;/h1&gt;&lt;p&gt;点击去B站看看 -&amp;gt;&amp;gt;&amp;gt; &lt;a class=&quot;btn-an</summary>
-      
-    
-    
-    
-    <category term="旅行" scheme="http://abeibiji.cn/categories/%E6%97%85%E8%A1%8C/"/>
-    
-    
-    <category term="云旅行" scheme="http://abeibiji.cn/tags/%E4%BA%91%E6%97%85%E8%A1%8C/"/>
     
   </entry>
   

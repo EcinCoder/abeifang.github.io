@@ -4,6 +4,83 @@
   
     
     <entry>
+      <title>青岛</title>
+      <link href="/2024/11/25/%E9%9D%92%E5%B2%9B/"/>
+      <url>/2024/11/25/%E9%9D%92%E5%B2%9B/</url>
+      
+        <content type="html"><![CDATA[<div class="timeline orange"><div class="timeline-item headline"><div class="timeline-item-title"><div class="item-circle"><p>2022</p></div></div></div><div class="timeline-item"><div class="timeline-item-title"><div class="item-circle"><p>01-02</p></div></div><div class="timeline-item-content"><p>这是测试页面</p></div></div></div><h1 id="青岛">青岛</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 旅行攻略 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 旅行攻略 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>通用方法存档</title>
+      <link href="/2024/10/15/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95%E5%AD%98%E6%A1%A3/"/>
+      <url>/2024/10/15/%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95%E5%AD%98%E6%A1%A3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="server-sent-eventssse前后端配置">Server-SentEvents（SSE）前后端配置</h2><h3 id="前端">前端</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> eventSource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">'http://47.109.186.180:8102/api/test/sse'</span>); <span class="comment">// 替换为后端地址</span></span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"链接成功"</span>,event)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"收到消息"</span>,event)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">eventSource.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">event</span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"链接失败"</span>,event)</span><br><span class="line">}</span><br></pre></td></tr></table></figure><h3 id="后端">后端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping("/test")</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">testC</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">ExecutorService</span> <span class="variable">executorService</span> <span class="operator">=</span> Executors.newCachedThreadPool();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> CopyOnWriteArrayList&lt;SseEmitter&gt; emitters = <span class="keyword">new</span> <span class="title class_">CopyOnWriteArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)</span></span><br><span class="line">    <span class="keyword">public</span> SseEmitter <span class="title function_">handleSse</span><span class="params">()</span> {</span><br><span class="line">        <span class="type">SseEmitter</span> <span class="variable">emitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SseEmitter</span>(Long.MAX_VALUE); <span class="comment">// 设置超时时间为 Long.MAX_VALUE</span></span><br><span class="line">        emitters.add(emitter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 移除已完成的连接</span></span><br><span class="line">        emitter.onCompletion(() -&gt; emitters.remove(emitter));</span><br><span class="line">        emitter.onTimeout(() -&gt; emitters.remove(emitter));</span><br><span class="line">        <span class="keyword">return</span> emitter;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向前端发送消息接口</span></span><br><span class="line">    <span class="meta">@PostMapping("/send")</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">(<span class="meta">@RequestBody</span> String message)</span> {</span><br><span class="line">        <span class="keyword">for</span> (SseEmitter emitter : emitters) {</span><br><span class="line">            executorService.submit(() -&gt; {</span><br><span class="line">                <span class="keyword">try</span> {</span><br><span class="line">                    emitter.send(message);</span><br><span class="line">                } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                    emitters.remove(emitter); <span class="comment">// 如果发送失败，移除该连接</span></span><br><span class="line">                }</span><br><span class="line">            });</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="全局事件总线-mitt">全局事件总线 mitt</h2><p>安装mitt依赖</p><blockquote><p>npm install mitt</p></blockquote><p>src 目录下创建/bus/index.ts</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入mitt插件，mitt是一个方法，方法执行返回bus对象。</span></span><br><span class="line"><span class="keyword">import</span> mitt <span class="keyword">from</span> <span class="string">"mitt"</span>;</span><br><span class="line"><span class="keyword">let</span> $bus = <span class="title function_">mitt</span>();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> $bus;</span><br></pre></td></tr></table></figure><p>监听事件</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=<span class="string">"ts"</span> setup&gt;</span><br><span class="line"><span class="keyword">import</span> $bus <span class="keyword">from</span> <span class="string">"../../bus"</span> <span class="comment">// 找到bus文件夹</span></span><br><span class="line"><span class="comment">// 监听事件on（"监听事件名称","接收的事件数据回调"）</span></span><br><span class="line">$bus.<span class="title function_">on</span>(<span class="string">"getName"</span>,<span class="function">(<span class="params">name</span>) =&gt;</span> {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">    })</span><br><span class="line">    </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 踩坑 </tag>
+            
+            <tag> 上线 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>uniapp通知开发</title>
+      <link href="/2024/10/07/uniapp%E9%80%9A%E7%9F%A5%E5%BC%80%E5%8F%91/"/>
+      <url>/2024/10/07/uniapp%E9%80%9A%E7%9F%A5%E5%BC%80%E5%8F%91/</url>
+      
+        <content type="html"><![CDATA[<h2 id="需求分析">需求分析</h2><ol type="1"><li>首次下载（2周） – 执行<strong>血糖控制不佳</strong>推荐逻辑</li><li>两周后仍血糖控制不佳 – 执行<strong>密集通知</strong></li><li>直到达成血糖控制，则转为<strong>日常通知</strong></li></ol><p><strong>血糖控制不佳：</strong></p><ul><li>3天内血糖值有2次大于控制范围上限，<strong>空腹血糖&gt;7.0mmol/L</strong>或<strong>餐后2小时（任意血糖）&gt;11.1mmol/L</strong>.（通知内容为：您的血糖控制不佳，建议您及时联系健康团队）</li><li>3天内有4次没有按时,常规监测血糖.（通知内容为：为了您的健康，请您按时测血糖）触发通知，app及短信提醒患者极其绑定家人</li></ul><p><strong>密集通知：</strong></p><ul><li>空腹+三餐后（6:00、9：00、14:00、20:00）发出通知，提醒用户测血糖。</li><li>7:00、11:30、17：30发出通知，提醒用户用药。</li><li>医生上线时，通知所有血糖控制不佳的患者。</li><li>血糖不佳的患者上线时，通知健康管理团队的医生和护士。</li></ul><p><strong>日常通知：</strong></p><ul><li>下载后对于未能完成基础健康资料填写的，每隔1天11：00时通知：为了您的健康，请完善您的个人资料填写。</li><li>下载过1周后，每2天1次提醒办理慢病或特病。</li><li>每周有3天连续空腹+餐后6:00、20:00发出通知：为了您的健康，请您测血糖。</li><li>7:00、11:30、17：30发出通知，提醒用户用药。</li><li>复诊提醒，出院后1周时提醒：为了您的健康，请及时到医院复诊。下载后每个月提醒：为了您的健康，请及时到医院复诊。</li><li>测血糖大于25mmol/L时，或血糖小于3.9mmol/L（app与短信），提醒：为了您的生命安全，请及时到医院就诊。（同时提醒患者家属：您家人的血糖已经超出了危急值，请通知他及时到医院就诊。）</li></ul><p><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blog/202410071104117.png" alt="image-20241007110355009" style="zoom:50%;"></p><figure><img src="https://abei-1256557411.cos.ap-chengdu.myqcloud.com/blog/202410071327869.png" alt="image-20241007132722803"><figcaption aria-hidden="true">image-20241007132722803</figcaption></figure><figure><img src="C:/Users/EcinCoder/AppData/Roaming/Typora/typora-user-images/image-20241007132828151.png" alt="image-20241007132828151"><figcaption aria-hidden="true">image-20241007132828151</figcaption></figure><p>在这个方法里面校验之后更新</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>每周学习复盘</title>
       <link href="/2024/09/26/%E6%AF%8F%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E7%9B%98/"/>
       <url>/2024/09/26/%E6%AF%8F%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E7%9B%98/</url>
